@@ -19,6 +19,13 @@
 
 #include <iostream>
 
+#include <chrono>
+#include <fstream>
+#include <string>
+
+using std::endl;
+using std::cout;
+using std::cerr;
 
 color ray_color(const ray& r, const hittable& world, int depth) {
     hit_record rec;
@@ -90,13 +97,13 @@ hittable_list random_scene() {
 
 int main() {
 
+    std::ofstream file("analise.txt");
+
     // Image
 
     const auto aspect_ratio = 16.0 / 9.0;
-    const int image_width = 1200;
-    const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 10;
-    const int max_depth = 50;
+    int image_width = 640;
+
 
     // World
 
@@ -112,23 +119,102 @@ int main() {
 
     camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
 
-    // Render
+    for (size_t i = 1; i <= 6; i++)
+    {
+        int image_height = static_cast<int>(image_width / aspect_ratio);
+        int samples_per_pixel = 1; // 1 ~ 100
+        int max_depth = 1;          // 5 ~ 50
 
-    std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+        std::string PPMOutputName = "image-";
+        PPMOutputName += std::to_string(i);
+        PPMOutputName += ".ppm";
 
-    for (int j = image_height-1; j >= 0; --j) {
-        std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
-        for (int i = 0; i < image_width; ++i) {
-            color pixel_color(0,0,0);
-            for (int s = 0; s < samples_per_pixel; ++s) {
-                auto u = (i + random_double()) / (image_width-1);
-                auto v = (j + random_double()) / (image_height-1);
-                ray r = cam.get_ray(u, v);
-                pixel_color += ray_color(r, world, max_depth);
+        std::ofstream image(PPMOutputName);
+
+        // Render
+        image << "P3\n"
+                  << image_width << ' ' << image_height << "\n255\n";
+
+        // Comeca o Timer
+        auto start = std::chrono::high_resolution_clock::now();
+
+        std::cerr << "\n"
+                  << endl;
+
+        for (int j = image_height - 1; j >= 0; --j)
+        {
+            std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
+            for (int i = 0; i < image_width; ++i)
+            {
+                color pixel_color(0, 0, 0);
+                for (int s = 0; s < samples_per_pixel; ++s)
+                {
+                    auto u = (i + random_double()) / (image_width - 1);
+                    auto v = (j + random_double()) / (image_height - 1);
+                    ray r = cam.get_ray(u, v);
+                    pixel_color += ray_color(r, world, max_depth);
+                }
+                write_color(image, pixel_color, samples_per_pixel);
             }
-            write_color(std::cout, pixel_color, samples_per_pixel);
         }
-    }
 
-    std::cerr << "\nDone.\n";
+        // Para o Timer
+        auto end = std::chrono::high_resolution_clock::now();
+
+        // Calcula a duracao da funcao
+        std::chrono::duration<double> duration = end - start;
+
+        std::cerr << "\nDone.\n";
+
+        cerr << "--------------------------------\n";
+        cerr << "\nTempo de execucao para " << image_width << " x " << image_height
+             << ", " << samples_per_pixel << " samples por pixel e " << max_depth
+             << " de profundidade maxima.\n\n> " << duration.count() << " segundos.\n"
+             << endl;
+
+
+        image.close();
+
+        file << image_width << "," << image_height << "," << duration.count() << endl;
+
+        switch (i)
+        {
+        case 1:
+            image_width = 800;
+            break;
+
+        case 2:
+            image_width = 1024;
+            break;
+
+        case 3:
+            image_width = 1280;
+            break;
+
+        case 4:
+            image_width = 1920;
+            break;
+
+        case 5:
+            image_width = 2560;
+            break;
+
+        case 6:
+            image_width = 3840;
+            break;
+
+        default:
+            break;
+        }
+
+        //file << samples_per_pixel << "," << duration.count() << endl;
+
+
+        // if( samples_per_pixel == 1 )
+        //     samples_per_pixel += 9;
+        // else
+        //     samples_per_pixel += 10;
+    } 
+
+    file.close();
 }
