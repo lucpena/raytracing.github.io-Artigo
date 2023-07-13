@@ -17,8 +17,12 @@ for line in lines:
 plt.plot(resolutions, times, marker='o')
 plt.xlabel('Resolução')
 plt.ylabel('Tempo de renderização (segundos)')
-plt.title('Desempenho do Ray Tracing')
+plt.title('Resolução - 1SPP, 1 Profundidade')
 plt.grid(True)
+
+# Adicionando os valores ao lado das bolinhas
+for i in range(len(resolutions)):
+    plt.annotate(f'{times[i]}', (resolutions[i], times[i]), textcoords="offset points", xytext=(6,-10), ha='left', fontsize=12)
 
 
 # Exibindo o gráfico

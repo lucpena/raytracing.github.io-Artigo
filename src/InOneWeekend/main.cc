@@ -102,8 +102,9 @@ int main() {
     // Image
 
     const auto aspect_ratio = 16.0 / 9.0;
+    int samples_per_pixel = 10; // 1 ~ 100
+    int max_depth = 5;         // 5 ~ 50
     int image_width = 640;
-
 
     // World
 
@@ -119,11 +120,9 @@ int main() {
 
     camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
 
-    for (size_t i = 1; i <= 6; i++)
+    for (size_t i = 1; i <= 10; i++)
     {
         int image_height = static_cast<int>(image_width / aspect_ratio);
-        int samples_per_pixel = 1; // 1 ~ 100
-        int max_depth = 1;          // 5 ~ 50
 
         std::string PPMOutputName = "image-";
         PPMOutputName += std::to_string(i);
@@ -175,39 +174,52 @@ int main() {
 
         image.close();
 
-        file << image_width << "," << image_height << "," << duration.count() << endl;
+        // Para teste de resolução
+        // file << image_width << "," << image_height << "," << duration.count() << endl;
+
+        // Para teste de Samples Per Pixel
+        // file << samples_per_pixel << "," << duration.count() << endl;
+
+        // Para teste de profundidade
+        file << max_depth << "," << duration.count() << endl;
+        max_depth += 5;
 
         switch (i)
         {
         case 1:
-            image_width = 800;
+            // image_width = 800;
+            // samples_per_pixel += 9;
             break;
 
         case 2:
-            image_width = 1024;
+            // image_width = 1024;
+            // samples_per_pixel += 10;
             break;
 
         case 3:
-            image_width = 1280;
+            // image_width = 1280;
+            // samples_per_pixel += 10;
             break;
 
         case 4:
-            image_width = 1920;
+            // image_width = 1920;
+            // samples_per_pixel += 10;
             break;
 
         case 5:
-            image_width = 2560;
+            // image_width = 2560;
+            // samples_per_pixel += 10;
             break;
 
         case 6:
-            image_width = 3840;
+            // image_width = 3840;
+            // samples_per_pixel += 10;
             break;
 
         default:
             break;
         }
 
-        //file << samples_per_pixel << "," << duration.count() << endl;
 
 
         // if( samples_per_pixel == 1 )

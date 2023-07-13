@@ -1,3 +1,12 @@
+## Rodando o programa
+
+    $ cmake -B build
+    $ cmake --build build
+    $ build/inOneWeekend
+
+    $ cmake --build build && build/inOneWeekend
+
+
 Ray Tracing in One Weekend Book Series
 ====================================================================================================
 
@@ -27,7 +36,7 @@ developing on the `dev-major` branch. You can also follow along with our remaini
 [milestone 16][] (the main body of remaining work), and [milestone 19][] (release preparation
 tasks). We're tackling some larger refactorings to further simplify the code, address some large
 outstanding issues, and focus on more development and expansion of book 3: _Ray Tracing: The Rest of
-Your Life_.
+Your Life_.cmake --build build
 
 Let us know if you'd like to help out. If you have a change you'd like to contribute,
 _**[please see our contribution guidelines][CONTRIBUTING]**_.
@@ -54,7 +63,8 @@ Contains the css for the books and the site.
 
 ### src/
 Contains the source.
-
+    $ cmake -B build
+    $ cmake --build build
 ### src/common/
 Contains any headers that are common to two or more books. This is also where external headers
 are stored.
@@ -69,7 +79,8 @@ Source Code
 ### Intent
 This repository is not meant to act as its own tutorial. The source is provided so you can compare
 your work when progressing through the book. We strongly recommend reading and following along with
-the book to understand the source. Ideally, you'll be developing your own implmentation as you go,
+the book to understand the source. Ideally, you'll be developing your own implmentation as you go,    $ cmake -B build
+    $ cmake --build build
 in order to deeply understand how a raytracer works.
 
 ### Downloading The Source Code

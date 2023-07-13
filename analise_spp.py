@@ -15,10 +15,14 @@ for line in lines:
 
 # Plotando o gráfico
 plt.plot(samples, times, marker='o')
-plt.xlabel('Samples por pixel')
+plt.xlabel('Amostrar por Pixel (SPP)')
 plt.ylabel('Tempo de renderização (segundos)')
-plt.title('Desempenho do Ray Tracing')
+plt.title('Amostras Por Pixel (SPP) - 1 Profundidade, 1920 x 1080')
 plt.grid(True)
+
+# Adicionando os valores ao lado das bolinhas
+for i in range(len(samples)):
+    plt.annotate(f'{times[i]}', (samples[i], times[i]), textcoords="offset points", xytext=(6,-6), ha='left', fontsize=12)
 
 # Exibindo o gráfico
 plt.show()
