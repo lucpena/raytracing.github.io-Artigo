@@ -102,9 +102,9 @@ int main() {
     // Image
 
     const auto aspect_ratio = 16.0 / 9.0;
-    int samples_per_pixel = 10; // 1 ~ 100
+    int samples_per_pixel = 5; // 1 ~ 100
     int max_depth = 5;         // 5 ~ 50
-    int image_width = 640;
+    int image_width = 300;
 
     // World
 
@@ -178,47 +178,42 @@ int main() {
         // file << image_width << "," << image_height << "," << duration.count() << endl;
 
         // Para teste de Samples Per Pixel
-        // file << samples_per_pixel << "," << duration.count() << endl;
+        file << samples_per_pixel << "," << duration.count() << endl;
+        samples_per_pixel += 10;
 
         // Para teste de profundidade
-        file << max_depth << "," << duration.count() << endl;
-        max_depth += 5;
+        // file << max_depth << "," << duration.count() << endl;
+        // max_depth += 5;
 
-        switch (i)
-        {
-        case 1:
-            // image_width = 800;
-            // samples_per_pixel += 9;
-            break;
+        // switch (i)
+        // {
+        // case 1:
+        //     image_width = 800;           
+        //     break;
 
-        case 2:
-            // image_width = 1024;
-            // samples_per_pixel += 10;
-            break;
+        // case 2:
+        //     image_width = 1024;
+        //     break;
 
-        case 3:
-            // image_width = 1280;
-            // samples_per_pixel += 10;
-            break;
+        // case 3:
+        //     image_width = 1280;
+        //     break;
 
-        case 4:
-            // image_width = 1920;
-            // samples_per_pixel += 10;
-            break;
+        // case 4:
+        //     image_width = 1920;
+        //     break;
 
-        case 5:
-            // image_width = 2560;
-            // samples_per_pixel += 10;
-            break;
+        // case 5:
+        //     image_width = 2560;
+        //     break;
 
-        case 6:
-            // image_width = 3840;
-            // samples_per_pixel += 10;
-            break;
+        // case 6:
+        //     image_width = 3840;
+        //     break;
 
-        default:
-            break;
-        }
+        // default:
+        //     break;
+        // }
 
 
 
