@@ -22,7 +22,15 @@ plt.grid(True)
 
 # Adicionando os valores ao lado das bolinhas
 for i in range(len(resolutions)):
-    plt.annotate(f'{times[i]}', (resolutions[i], times[i]), textcoords="offset points", xytext=(6,-10), ha='left', fontsize=12)
+    y = 8
+    x = 6
+    if( i == 0 ): y = 12
+    if( i == 3 ): y = -8
+    if( i == 4 ): y = 2
+    if( i == 5 ): 
+        y = -8 
+        x = -55
+    plt.annotate(f'{times[i]}', (resolutions[i], times[i]), textcoords="offset points", xytext=(x,y), ha='left', fontsize=12)
 
 
 # Exibindo o gráfico

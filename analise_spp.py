@@ -18,7 +18,7 @@ plt.plot(samples, times, marker='o')
 plt.xlabel('Amostras por Pixel (SPP)')
 plt.xlabel('Amostras por Pixel (SPP)')
 plt.ylabel('Tempo de renderização (segundos)')
-plt.title('Amostras Por Pixel (SPP) - 50 de Profundidade, 640 x 360')
+plt.title('Amostras Por Pixel (SPP) - 5 de Profundidade, 300 x 168')
 plt.grid(True)
 
 # Adicionando os valores ao lado das bolinhas
