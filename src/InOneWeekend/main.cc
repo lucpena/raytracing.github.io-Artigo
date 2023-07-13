@@ -189,31 +189,37 @@ int main() {
         {
         case 1:
             // image_width = 800;
+            // samples_per_pixel += 9;
             break;
 
         case 2:
             // image_width = 1024;
+            // samples_per_pixel += 10;
             break;
 
         case 3:
             // image_width = 1280;
+            // samples_per_pixel += 10;
             break;
 
         case 4:
             // image_width = 1920;
+            // samples_per_pixel += 10;
             break;
 
         case 5:
             // image_width = 2560;
+            // samples_per_pixel += 10;
             break;
 
         case 6:
             // image_width = 3840;
+            // samples_per_pixel += 10;
             break;
 
-        default:
-            break;
-        }
+        // default:
+        //     break;
+        // }
 
 
 

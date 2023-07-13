@@ -16,6 +16,7 @@ for line in lines:
 # Plotando o gráfico
 plt.plot(samples, times, marker='o')
 plt.xlabel('Amostras por Pixel (SPP)')
+plt.xlabel('Amostras por Pixel (SPP)')
 plt.ylabel('Tempo de renderização (segundos)')
 plt.title('Amostras Por Pixel (SPP) - 50 de Profundidade, 640 x 360')
 plt.grid(True)

@@ -17,12 +17,12 @@ for line in lines:
 plt.plot(samples, times, marker='o')
 plt.xlabel('Profundidade Máxima')
 plt.ylabel('Tempo de renderização (segundos)')
-plt.title('Profundidade Máxima - 10 SPP, 640 x 360')
+plt.title('Profundidade Máxima - 5 SPP, 300 x 168')
 plt.grid(True)
 
 # Adicionando os valores ao lado das bolinhas
 for i in range(len(samples)):
-    plt.annotate(f'{times[i]}', (samples[i], times[i]), textcoords="offset points", xytext=(-5,-30), ha='left', fontsize=12)
+    plt.annotate(f'{times[i]}', (samples[i], times[i]), textcoords="offset points", xytext=(0,0), ha='left', fontsize=12)
 
 # Exibindo o gráfico
 plt.show()
